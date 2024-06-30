@@ -1,0 +1,11 @@
+{% autoescape off %}
+Hello user,
+
+Thanks for joining Micro-Focus Inc.! 
+We just need one more thing from you - a quick confirmation of your email address and you'll be all set. 
+Click the link below to get started:
+
+{{ protocol }}://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+Thank you!
+{% endautoescape %}
