@@ -1,13 +1,52 @@
+<!-- templates/key_manager/home.html -->
 {% extends "key_manager/base.html" %}
-
-{% block title %}Home{% endblock %}
 
 {% block content %}
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <h1>Welcome to Micro-Focus Inc.</h1>
-            <p>This is the home page.</p>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Access Keys</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Key</th>
+                        <th>Status</th>
+                        <th>Date of Procurement</th>
+                        <th>Expiry Date</th>
+                        {% if user.is_staff %}
+                        <th>Action</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key in keys %}
+                    <tr>
+                        <td>{{ key.user.email }}</td>
+                        <td>{{ key.key }}</td>
+                        <td>{{ key.status }}</td>
+                        <td>{{ key.date_of_procurement }}</td>
+                        <td>{{ key.expiry_date }}</td>
+                        {% if user.is_staff %}
+                        <td>
+                            {% if key.status != 'revoked' %}
+                            <form action="{% url 'revoke_key' key.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm">Revoke</button>
+                            </form>
+                            {% endif %}
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% if not user.is_staff %}
+            <form action="{% url 'request_key' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary btn-sm">Request New Key</button>
+            </form>
+            {% endif %}
         </div>
     </div>
 </div>
