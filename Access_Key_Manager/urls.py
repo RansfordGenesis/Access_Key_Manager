@@ -23,14 +23,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('key_manager.urls')),
     path('signup/', users_views.signup, name='signup'),
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('verify-user/', users_views.verify_user, name='verify_user'),
+    path('login/', users_views.CustomLoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', users_views.custom_logout, name='logout'),
-    path('password_reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html', email_template_name='users/password_reset_email.html',
-        subject_template_name='users/password_reset_subject.txt'), name='password_reset'),
+    
+    path('password_reset/', users_views.password_reset, name='password_reset'),
     path('password_reset_confirm/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name="password_reset_confirm"),
     path('password_reset_done' ,auth_views.PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'), name="password_reset_done"),
     path('password_reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name="password_reset_complete"),
-    path('activate/<uidb64>/<token>', users_views.activate, name="activate"),
     path('account_activated/', users_views.account_activated, name='account_activated'),
 ]
 
