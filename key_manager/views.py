@@ -8,20 +8,35 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.utils import timezone
 from django.http import JsonResponse
-
-@login_required
-def home(request):
-    return render(request, 'key_manager/home.html')
-
+from django.core.paginator import Paginator
 
 
 @login_required
 def home(request):
     if request.user.is_staff:
-        keys = AccessKey.objects.all()
+        keys = AccessKey.objects.all().order_by('user__email')
+        paginator = Paginator(keys, 10)  # Show 10 keys per page.
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        grouped_keys = {}
+        for key in page_obj:
+            email = key.user.email
+            if email not in grouped_keys:
+                grouped_keys[email] = []
+            grouped_keys[email].append(key)
+
+        context = {
+            'grouped_keys': grouped_keys,
+            'page_obj': page_obj,
+        }
     else:
-        keys = AccessKey.objects.filter(user=request.user)
-    return render(request, 'key_manager/home.html', {'keys': keys})
+        keys = AccessKey.objects.filter(user=request.user).order_by('date_of_procurement')
+        context = {
+            'keys': keys,
+        }
+
+    return render(request, 'key_manager/home.html', context)
 
 @login_required
 @user_passes_test(lambda u: u.is_staff)
