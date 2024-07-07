@@ -11,7 +11,7 @@ def send_mail_verification(email:str, link:str):
     "to": {
       "email": email,
     },
-    "template": "W9B4WK8FZG43FWQDS7YZHB07YYM0",
+    "template": config('ACTIVATE_TEMPLATE'),
     "data": {
       "link": link,
     },
@@ -24,7 +24,7 @@ def send_reset_mail(email:str, link:str):
             "to": {
                 "email": email,
             },
-            "template": "SNS3G5YBS24CEWQYCA5N72Q3GBKM",
+            "template": config('RESET_TEMPLATE'),
             "data": {
                 "link": link,
             },
