@@ -31,12 +31,19 @@ def home(request):
             'page_obj': page_obj,
         }
     else:
-        keys = AccessKey.objects.filter(user=request.user).order_by('date_of_procurement')
+        now = timezone.now()
+        expired_keys = AccessKey.objects.filter(expiry_date__lt=now, status='active')
+
+        for key in expired_keys:
+            key.status = 'expired'
+            key.save()  
+            
+        keys = AccessKey.objects.filter(user=request.user).order_by('-date_of_procurement')
         context = {
             'keys': keys,
-        }
-
-    return render(request, 'key_manager/home.html', context)
+        } 
+    return render(request, 'key_manager/home.html', context) 
+            
 
 @login_required
 @user_passes_test(lambda u: u.is_staff)
