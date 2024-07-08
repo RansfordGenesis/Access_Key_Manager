@@ -19,6 +19,7 @@ The Access Key Manager is deployed and accessible at the following link:
 - [About](#about)
 - [Getting Started](#getting_started)
 - [Project Structure](#structure)
+- [ER Diagram](#diagram)
 - [Usage](#usage)
 - [Built Using](#built_using)
 
@@ -197,6 +198,14 @@ Access_Key_Manager
    └─ __init__.py
 
 ```
+
+
+## ✏️ER Diagram <a name="diagram"></a>
+Below is the ER diagram for the Access Key Manager project:
+
+![ER Diagram](Access_Key_Manager.png)
+
+
 
 ## 🎈 Usage <a name="usage"></a>
 ### User Registration and Email Verification
