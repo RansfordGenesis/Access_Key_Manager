@@ -203,7 +203,7 @@ Access_Key_Manager
 ## ✏️ER Diagram <a name="diagram"></a>
 Below is the ER diagram for the Access Key Manager project:
 
-![ER Diagram](Access_Key_Manager.png)
+![ER Diagram](ER_Diagram.png)
 
 
 
