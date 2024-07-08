@@ -104,3 +104,9 @@ def check_active_key(request):
             return JsonResponse({'error': 'User with this email does not exist'}, status=404)
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=405)
+    
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)
+
+def custom_500(request, exception):
+    return render(request, '500.html', status=500)

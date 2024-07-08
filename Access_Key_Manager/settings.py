@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -193,3 +193,7 @@ ACCOUNT_UNIQUE_EMAIL = True
 # EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 # EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+# Define handler for custom error pages
+handler404 = 'key_manager.views.custom_404'
+handler500 = 'key_manager.views.custom_500'
