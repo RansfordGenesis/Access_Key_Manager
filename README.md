@@ -1,14 +1,12 @@
 <h1 align="center">ACCESS KEY MANAGER</h1>
 
-<div align="center">
+## Deployed Application
 
-  ![Status](https://img.shields.io/badge/status-active-success.svg)
-  ![GitHub issues](https://img.shields.io/github/issues/Slightly-Techie/crm-api?color=yellow)
-  ![GitHub pull requests](https://img.shields.io/github/issues-pr/Slightly-Techie/crm-api?color=success)
-  [![License](https://img.shields.io/badge/license-Proprietary-blue.svg)](/LICENSE)
+The Access Key Manager is deployed and accessible at the following link:
 
+[Access Key Manager - Deployed Application](https://access-key-manager-mtco.onrender.com/)
 
-</div>
+**LINK**: https://access-key-manager-mtco.onrender.com/
 
 ---
 
