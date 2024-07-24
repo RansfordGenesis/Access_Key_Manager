@@ -66,7 +66,7 @@ def verify_user(request):
             return render(request, 'users/account_activated.html')
         else:
             messages.success(request, 'Email already verified, you may now log in.')
-            return render(request, 'users/account_already_activated.html')
+            return render(request, 'users/account_already_verified.html')
     except jwt.ExpiredSignatureError or jwt.DecodeError or jwt.InvalidTokenError:
         return render(request, 'users/account_activation_invalid.html')
     
